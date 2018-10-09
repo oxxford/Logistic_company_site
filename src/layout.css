@@ -1,0 +1,31 @@
+.app-bar-title {
+    flex-grow: 1;
+}
+
+.app-bar-button-spacer {
+    margin: 0 8px;
+}
+
+.background {
+    position: relative;
+    background-size: contain;
+    height: 1261px;
+    background: url("../image.png") no-repeat;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.firstBlock {
+    padding-top: 100px;
+    margin-left: 100px;
+}
+
+.secondBlock {
+    padding-top: 250px;
+    margin-left: 100px;
+}
+
+.thirdBlock {
+    padding-top: 250px;
+    margin-left: 100px;
+}

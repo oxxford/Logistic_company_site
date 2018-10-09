@@ -1,0 +1,28 @@
+import {store} from "./store"
+import {TYPES} from "./action-types";
+
+const basedState = {
+    data: undefined,
+    isOpen: false,
+    emailValue: "",
+    passwordValue: ""
+};
+
+export const reducer =(prevState = basedState, action) => {
+    const newState = {...prevState};
+    switch (action.type) {
+        case TYPES.LOGIN:
+            return {...newState, isOpen: action.isOpen};
+
+        case TYPES.LOGIN_REQUEST:
+            return {...newState, data: action.data, isOpen: false };
+
+        case TYPES.EMAIL_VALUE:
+            return {...newState, emailValue: action.value };
+
+        case TYPES.PASSWORD_VALUE:
+            return {...newState, passwordValue: action.value };
+    }
+
+    return newState
+};

@@ -11,7 +11,7 @@ function srcPath(subdir) {
 module.exports = {
     mode: "development",
     entry: {
-        app: ["./src/index.js"]
+        app: ["./src/index.jsx"]
     },
     output: {
         path: path.join(__dirname, outputDirectory),
@@ -38,6 +38,15 @@ module.exports = {
                             camelCase: true
                         }
                     }]
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {}
+                    }
+                ]
             }
         ]
     },
