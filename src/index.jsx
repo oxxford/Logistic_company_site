@@ -4,14 +4,17 @@ import {BrowserRouter as Router} from 'react-router-dom'
 
 import {Layout} from "./layout";
 import Provider from "react-redux/es/components/Provider";
-import {store} from "../data/store";
+import {store} from "./data/store";
+import {Signup} from "./signup/signup";
+import Route from "react-router-dom/es/Route";
 
 const App = () => (
     <Provider store={store} >
         <Router>
-            <Layout>
-
-            </Layout>
+            <div>
+                <Route path="/" component={Layout} />
+                {/*<Route exact path="/signup" component={Signup} />*/}
+            </div>
         </Router>
     </Provider>
 );

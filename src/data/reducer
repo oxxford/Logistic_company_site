@@ -1,9 +1,9 @@
-import {store} from "./store"
 import {TYPES} from "./action-types";
 
 const basedState = {
     data: undefined,
-    isOpen: false,
+    loginIsOpen: false,
+    signUpIsOpen: false,
     emailValue: "",
     passwordValue: ""
 };
@@ -11,11 +11,14 @@ const basedState = {
 export const reducer =(prevState = basedState, action) => {
     const newState = {...prevState};
     switch (action.type) {
-        case TYPES.LOGIN:
-            return {...newState, isOpen: action.isOpen};
+        case TYPES.LOGIN_DIALOG:
+            return {...newState, loginIsOpen: action.loginIsOpen, signUpIsOpen: false};
+
+        case TYPES.SIGN_UP_DIALOG:
+            return {...newState, signUpIsOpen: action.signUpIsOpen, loginIsOpen: false};
 
         case TYPES.LOGIN_REQUEST:
-            return {...newState, data: action.data, isOpen: false };
+            return {...newState, data: action.data, loginIsOpen: false };
 
         case TYPES.EMAIL_VALUE:
             return {...newState, emailValue: action.value };

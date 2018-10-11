@@ -1,15 +1,25 @@
 import {TYPES} from "./action-types";
 import axios from "axios";
 
-export const login = (isOpen) => {
+export const login = (loginIsOpen) => {
     return {
-        type: TYPES.LOGIN,
-        isOpen
+        type: TYPES.LOGIN_DIALOG,
+        isOpen: loginIsOpen
+    }
+};
+
+export const signup = (signupIsOpen) => {
+    return {
+        type: TYPES.SIGN_UP_DIALOG,
+        isOpen: signupIsOpen
     }
 };
 
 export const getInfo = (dispatch) => {
-    axios.get('http://localhost:8090/api/getusername')
+    axios.post('http://localhost:8090/login', {
+            firstName: 'Fred',
+            lastName: 'Flintstone'
+        })
         .then((response) => {
             dispatch({
                 type: TYPES.LOGIN_REQUEST,
