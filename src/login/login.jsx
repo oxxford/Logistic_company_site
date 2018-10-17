@@ -5,7 +5,7 @@ import DialogContent from "@material-ui/core/es/DialogContent/DialogContent";
 import DialogTitle from "@material-ui/core/es/DialogTitle/DialogTitle";
 import Dialog from "@material-ui/core/es/Dialog/Dialog";
 import TextField from "@material-ui/core/es/TextField/TextField";
-import {getInfo, handleEmail, handlePassword, login} from "../data/action-creators";
+import {getLoginInfo, handleEmail, handlePassword, login, signup} from "../data/action-creators";
 import connect from "react-redux/es/connect/connect";
 import style from './login.css';
 
@@ -46,14 +46,14 @@ const dialog = (props) => {
 
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => props.login(false)} variant="contained" color="primary" className={style.signUpButton}>
+                    <Button onClick={() => props.signup(true)} variant="contained" color="primary" className={style.signUpButton}>
                         Sing Up
                     </Button>
                     <span className={style.appBarButtonSpacer}/>
                     <Button onClick={() => props.login(false)} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={props.getInfo} color="primary">
+                    <Button onClick={props.getLoginInfo} color="primary">
                         Login
                     </Button>
                 </DialogActions>
@@ -71,7 +71,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     login: (isOpen) => dispatch(login(isOpen)),
-    getInfo: () => getInfo(dispatch),
+    signup: (isOpen) => dispatch(signup(isOpen)),
+    getLoginInfo: () => getLoginInfo(dispatch),
     handleEmail: (e) => dispatch(handleEmail(e.target.value)),
     handlePassword: (e) => dispatch(handlePassword(e.target.value))
 });

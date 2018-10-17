@@ -3,9 +3,10 @@ import {TYPES} from "./action-types";
 const basedState = {
     data: undefined,
     loginIsOpen: false,
-    signUpIsOpen: false,
+    signupIsOpen: false,
     emailValue: "",
-    passwordValue: ""
+    passwordValue: "",
+    confirmPasswordValue: ""
 };
 
 export const reducer =(prevState = basedState, action) => {
@@ -15,16 +16,22 @@ export const reducer =(prevState = basedState, action) => {
             return {...newState, loginIsOpen: action.loginIsOpen, signUpIsOpen: false};
 
         case TYPES.SIGN_UP_DIALOG:
-            return {...newState, signUpIsOpen: action.signUpIsOpen, loginIsOpen: false};
+            return {...newState, signupIsOpen: action.signupIsOpen, loginIsOpen: false};
 
         case TYPES.LOGIN_REQUEST:
-            return {...newState, data: action.data, loginIsOpen: false };
+            return {...newState, data: action.data };
+
+        case TYPES.SIGN_UP_REQUEST:
+            return {...newState, data: action.data };
 
         case TYPES.EMAIL_VALUE:
             return {...newState, emailValue: action.value };
 
         case TYPES.PASSWORD_VALUE:
             return {...newState, passwordValue: action.value };
+
+        case TYPES.CONFIRM_PASSWORD_VALUE:
+            return {...newState, confirmPasswordValue: action.value };
     }
 
     return newState

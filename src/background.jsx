@@ -3,8 +3,10 @@ import Typography from "@material-ui/core/Typography/Typography";
 import Button from "@material-ui/core/Button/Button";
 
 import style from './layout.css'
+import {login} from "./data/action-creators";
+import connect from "react-redux/es/connect/connect";
 
-export const Background = () => {
+const background = (props) => {
     return (
         <div className={style.background}>
             <div className={style.firstBlock}>
@@ -45,3 +47,10 @@ export const Background = () => {
         </div>
     )
 };
+
+
+const mapDispatchToProps = (dispatch) => ({
+    login: (isOpen) => dispatch(login(isOpen))
+});
+
+export const Background = connect(null, mapDispatchToProps)(background);

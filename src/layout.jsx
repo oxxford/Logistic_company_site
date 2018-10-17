@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button/Button";
 
 import style from './layout.css'
 import LoginDialog from "./login/login";
+import SignupDialog from "./signup/signup";
 import {login} from "./data/action-creators";
 import connect from "react-redux/es/connect/connect";
 import {About} from "./about/about";
@@ -38,8 +39,9 @@ const layout = (props) => (
         </AppBar>
 
         <LoginDialog/>
+        <SignupDialog/>
 
-        <Route exact path="../about" component={About} />
+        <Route exact path="/about" component={About} />
         <Route exact path="/" component={Background} />
     </div>
 );
