@@ -15,24 +15,31 @@ export const signup = (signupIsOpen) => {
     }
 };
 
-export const getLoginInfo = (dispatch) => {
-    axios.post('http://localhost:8090/login', {
-            firstName: 'Fred',
-            lastName: 'Flintstone'
-        })
-        .then((response) => {
+export const getLoginInfo = (dispatch, emailValue, passwordValue) => {
+    const json = '{ "email": "' + emailValue + '", "password": "' + passwordValue + '" }';
+    console.log(json);
+    fetch('http://10.91.50.55:5000/', {
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+        },
+        body: JSON.stringify(json),
+        method: 'POST'
+    }).then((response) => {
+            console.log(response.data);
             dispatch({
                 type: TYPES.LOGIN_REQUEST,
                 data: Object.values(response.data)
-            })
+            });
         })
         .catch((e) => {
-            console.log("error")
+            console.log(e.message)
         });
 };
 
 export const getSignupInfo = (dispatch) => {
-    axios.post('http://localhost:8090/signup', {
+    axios.post('http://10.91.50.55:5000/signup', {
         firstName: 'Fred',
         lastName: 'Flintstone'
     })

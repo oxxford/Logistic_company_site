@@ -12,6 +12,7 @@ import {login} from "./data/action-creators";
 import connect from "react-redux/es/connect/connect";
 import {About} from "./about/about";
 import {Background} from "./background";
+import Calculator from "./Calculator/Calculator";
 
 const layout = (props) => (
     <div>
@@ -43,6 +44,7 @@ const layout = (props) => (
 
         <Route exact path="/about" component={About} />
         <Route exact path="/" component={Background} />
+        <Route exact path="/calculate" component={Calculator} />
     </div>
 );
 
