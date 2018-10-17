@@ -17,25 +17,25 @@ export const signup = (signupIsOpen) => {
 
 export const getLoginInfo = (dispatch, emailValue, passwordValue) => {
     const json = '{ "email": "' + emailValue + '", "password": "' + passwordValue + '" }';
-    console.log(json);
-    fetch('http://10.91.50.55:5000/', {
+
+    fetch('http://10.91.50.55:5000/api/v1/session', {
         headers: {
+            'Authorization': 'Basic' + Buffer.from(emailValue + ":" + passwordValue).toString('base64'),
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
         },
         body: JSON.stringify(json),
         method: 'POST'
-    }).then((response) => {
-            console.log(response.data);
+    })
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
             dispatch({
                 type: TYPES.LOGIN_REQUEST,
-                data: Object.values(response.data)
-            });
+                data: json
+            })
         })
-        .catch((e) => {
-            console.log(e.message)
-        });
 };
 
 export const getSignupInfo = (dispatch) => {

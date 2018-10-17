@@ -13,7 +13,7 @@ export const reducer =(prevState = basedState, action) => {
     const newState = {...prevState};
     switch (action.type) {
         case TYPES.LOGIN_DIALOG:
-            return {...newState, loginIsOpen: action.loginIsOpen, signUpIsOpen: false};
+            return {...newState, loginIsOpen: action.loginIsOpen, signupIsOpen: false};
 
         case TYPES.SIGN_UP_DIALOG:
             return {...newState, signupIsOpen: action.signupIsOpen, loginIsOpen: false};

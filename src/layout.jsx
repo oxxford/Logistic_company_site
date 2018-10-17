@@ -12,7 +12,7 @@ import {login} from "./data/action-creators";
 import connect from "react-redux/es/connect/connect";
 import {About} from "./about/about";
 import {Background} from "./background";
-import Calculator from "./Calculator/Calculator";
+import Calculator from "./calculator/Calculator";
 
 const layout = (props) => (
     <div>

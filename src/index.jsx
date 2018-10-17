@@ -13,7 +13,6 @@ const App = () => (
         <Router>
             <div>
                 <Route path="/" component={Layout} />
-                {/*<Route exact path="/signup" component={Signup} />*/}
             </div>
         </Router>
     </Provider>
