@@ -60,7 +60,8 @@ const dialog = (props) => {
                     <Button onClick={() => props.signup(false)} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={props.getSignupInfo} color="primary">
+                    <Button onClick={() =>
+                        props.getSignupInfo(props.emailValue, props.passwordValue, props.confirmPasswordValue)} color="primary">
                         Sign up
                     </Button>
                 </DialogActions>
@@ -78,7 +79,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     signup: (isOpen) => dispatch(signup(isOpen)),
-    getSignupInfo: () => getSignupInfo(dispatch),
+    getSignupInfo: (emailValue, passwordValue, confirmPasswordValue) =>
+        getSignupInfo(dispatch, emailValue, passwordValue, confirmPasswordValue),
     handleEmail: (e) => dispatch(handleEmail(e.target.value)),
     handlePassword: (e) => dispatch(handlePassword(e.target.value)),
     handleConfirmPassword: (e) => dispatch(handleConfirmPassword(e.target.value))

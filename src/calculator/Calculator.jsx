@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import Button from "@material-ui/core/es/Button/Button";
+import {calculateRequest} from "../data/action-creators";
+import connect from "react-redux/es/connect/connect";
 
 const styles = theme => ({
     container: {
@@ -143,12 +146,31 @@ class Calculator extends React.Component {
                             ))}
                         </TextField>
                     </div>
+
+                    <Button color='primary' onClick={this.props.calculate}>
+                        Calculate
+                    </Button>
+                    {this.props.price !== undefined &&
+                    <div>
+                        It will const you {this.props.price}
+                    </div>
+                    }
                 </div>
 
             </form>
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    price: state.price
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    calculate: () => calculateRequest(dispatch)
+});
+
+Calculator = connect(mapStateToProps, mapDispatchToProps)(Calculator);
 
 Calculator.propTypes = {
     classes: PropTypes.object.isRequired,

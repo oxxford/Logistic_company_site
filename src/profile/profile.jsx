@@ -5,8 +5,9 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from "@material-ui/core/es/TextField/TextField";
+import connect from "react-redux/es/connect/connect";
 
-const Profile = () => {
+const profile = () => {
     return (
         <React.Fragment>
             <div className={style.profile}>
@@ -17,6 +18,14 @@ const Profile = () => {
                                 title="User Profile"
                             />
                             <CardContent>
+                                <TextField
+                                    margin="dense"
+                                    id="login"
+                                    label="Login"
+                                    type="text"
+                                    fullWidth
+                                />
+
                                 <TextField
                                     margin="dense"
                                     id="name"
@@ -61,5 +70,15 @@ const Profile = () => {
         </React.Fragment>
     );
 };
+
+const mapStateToProps = (state) => ({
+    userData: state.userData
+});
+
+const mapDispatchToProps = (dispatch) => ({
+});
+
+const Profile = connect(mapStateToProps, mapDispatchToProps)(profile);
+
 
 export default Profile;

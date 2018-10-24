@@ -1,9 +1,6 @@
 import {TYPES} from "./action-types";
 
 const basedState = {
-    authorized: undefined,
-    name: undefined,
-    surname: undefined,
     loginIsOpen: false,
     signupIsOpen: false,
     emailValue: "",
@@ -21,11 +18,15 @@ export const reducer =(prevState = basedState, action) => {
             return {...newState, signupIsOpen: action.signupIsOpen, loginIsOpen: false, authorized: undefined};
 
         case TYPES.LOGIN_REQUEST:
-            return {...newState, name: action.name, surname: action.surname, loginIsOpen: action.loginIsOpen,
+            return {...newState, userData: action.userData, loginIsOpen: action.loginIsOpen,
                 authorized: action.authorized };
 
         case TYPES.SIGN_UP_REQUEST:
-            return {...newState, name: action.name, surname: action.surname, data: action.data };
+            return {...newState, userData: action.userData, signupIsOpen: action.signupIsOpen,
+                authorized: action.authorized };
+
+        case TYPES.PRICE_CALCULATION_REQUEST:
+            return {...newState, price: action.price };
 
         case TYPES.EMAIL_VALUE:
             return {...newState, emailValue: action.value };
