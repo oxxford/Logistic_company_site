@@ -1,25 +1,12 @@
 import React from "react";
-import style from './profile.css'
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import style from './Profile.css'
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from "@material-ui/core/es/TextField/TextField";
 
-
-const styles = theme => ({
-    title: {
-        color: "secondary",
-    }
-});
-
-const profile = (props) => {
-    const {classes} = props;
-
+const Profile = () => {
     return (
         <React.Fragment>
             <div className={style.profile}>
@@ -50,8 +37,6 @@ const profile = (props) => {
                                     label="Email"
                                     type="email"
                                     fullWidth
-                                    value={props.emailValue}
-                                    onChange={props.handleEmail}
                                 />
                                 <TextField
                                     margin="dense"
@@ -74,11 +59,7 @@ const profile = (props) => {
                 </Grid>
             </div>
         </React.Fragment>
-);
+    );
 };
 
-profile.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(profile);
+export default Profile;

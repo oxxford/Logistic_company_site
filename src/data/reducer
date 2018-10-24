@@ -1,7 +1,9 @@
 import {TYPES} from "./action-types";
 
 const basedState = {
-    data: undefined,
+    authorized: undefined,
+    name: undefined,
+    surname: undefined,
     loginIsOpen: false,
     signupIsOpen: false,
     emailValue: "",
@@ -13,16 +15,17 @@ export const reducer =(prevState = basedState, action) => {
     const newState = {...prevState};
     switch (action.type) {
         case TYPES.LOGIN_DIALOG:
-            return {...newState, loginIsOpen: action.loginIsOpen, signupIsOpen: false};
+            return {...newState, loginIsOpen: action.loginIsOpen, signupIsOpen: false, authorized: undefined};
 
         case TYPES.SIGN_UP_DIALOG:
-            return {...newState, signupIsOpen: action.signupIsOpen, loginIsOpen: false};
+            return {...newState, signupIsOpen: action.signupIsOpen, loginIsOpen: false, authorized: undefined};
 
         case TYPES.LOGIN_REQUEST:
-            return {...newState, data: action.data };
+            return {...newState, name: action.name, surname: action.surname, loginIsOpen: action.loginIsOpen,
+                authorized: action.authorized };
 
         case TYPES.SIGN_UP_REQUEST:
-            return {...newState, data: action.data };
+            return {...newState, name: action.name, surname: action.surname, data: action.data };
 
         case TYPES.EMAIL_VALUE:
             return {...newState, emailValue: action.value };

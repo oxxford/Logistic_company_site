@@ -8,6 +8,20 @@ import TextField from "@material-ui/core/es/TextField/TextField";
 import {getLoginInfo, handleEmail, handlePassword, login, signup} from "../data/action-creators";
 import connect from "react-redux/es/connect/connect";
 import style from './login.css';
+import Redirect from "react-router-dom/es/Redirect";
+import DialogContentText from "@material-ui/core/es/DialogContentText/DialogContentText";
+
+const loginResponse = (props) => {
+    return (
+        props.authorized ? (
+            <Redirect to='profile'/>
+        ) : (
+            <DialogContentText style={{ color: '#ff0e0b' }}>
+                Unsuccessful login
+            </DialogContentText>
+        )
+    )
+};
 
 const dialog = (props) => {
     return (
@@ -44,6 +58,10 @@ const dialog = (props) => {
                         onChange={props.handlePassword}
                     />
 
+                    {props.authorized !== undefined &&
+                        loginResponse(props)
+                    }
+
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => props.signup(true)} variant="contained" color="primary" className={style.signUpButton}>
@@ -64,9 +82,9 @@ const dialog = (props) => {
 
 const mapStateToProps = (state) => ({
     loginIsOpen: state.loginIsOpen,
-    data: state.data,
     emailValue: state.emailValue,
-    passwordValue: state.passwordValue
+    passwordValue: state.passwordValue,
+    authorized: state.authorized
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -13,6 +13,7 @@ import connect from "react-redux/es/connect/connect";
 import {About} from "./about/about";
 import {Background} from "./background";
 import Calculator from "./calculator/Calculator";
+import profile from "./profile/profile";
 
 const layout = (props) => (
     <div>
@@ -25,7 +26,7 @@ const layout = (props) => (
                     About
                 </Button>
                 <span className={style.appBarButtonSpacer}/>
-                <Button variant="contained" color="default" >
+                <Button variant="contained" color="default" component={Link} to='/calculate'>
                     Calculate price
                 </Button>
                 <span className={style.appBarButtonSpacer}/>
@@ -45,6 +46,7 @@ const layout = (props) => (
         <Route exact path="/about" component={About} />
         <Route exact path="/" component={Background} />
         <Route exact path="/calculate" component={Calculator} />
+        <Route exact path="/profile" component={profile} />
     </div>
 );
 
