@@ -8,6 +8,7 @@ import {calculateRequest} from "../data/action-creators";
 import connect from "react-redux/es/connect/connect";
 import Typography from "@material-ui/core/Typography/Typography";
 import style from './Calculator.css'
+import Form from "./Form";
 
 const styles = theme => ({
     container: {
@@ -27,21 +28,6 @@ const styles = theme => ({
     },
 });
 
-const shipmentTypes = [
-    {
-        value: '1',
-        label: 'OneDay',
-    },
-    {
-        value: '2',
-        label: 'TwoDay',
-    },
-    {
-        value: '5',
-        label: 'FiveDay',
-    },
-];
-
 class Calculator extends React.Component {
     state = {
         currency: '1'
@@ -58,104 +44,14 @@ class Calculator extends React.Component {
 
         return (
             <form className={classes.container} noValidate autoComplete="off">
-                <div className={style.calculator}>
-                    <Typography variant="h3">
-                        Price calculator
-                    </Typography>
-                    <div>
-                        <TextField
-                            id="From"
-                            label="From"
-                            placeholder="Moscow"
-                            className={classes.textField}
-                            margin="normal"
-                        />
+                <div>
+                    <Form/>
 
-                        <TextField
-                            id="To"
-                            label="To"
-                            placeholder="New-York"
-                            className={classes.textField}
-                            margin="normal"
-                        />
-                    </div>
-
-                    <div>
-                        <TextField
-                            className={classes.textField}
-                            id="weight"
-                            label="Weight"
-                            placeholder="5"
-                            helperText="In kilograms"
-                            margin="dense"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                        <TextField
-                            className={classes.textField}
-                            id="length"
-                            label="Length"
-                            placeholder="33"
-                            helperText="In cm"
-                            margin="dense"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                        <TextField
-                            className={classes.textField}
-                            id="width"
-                            label="Width"
-                            placeholder="12"
-                            helperText="In cm"
-                            margin="dense"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-
-                        <TextField
-                            className={classes.textField}
-                            id="height"
-                            label="Height"
-                            placeholder="20"
-                            helperText="In cm"
-                            margin="dense"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </div>
-
-                    <div>
-                        <TextField
-                            id="standard-select-currency"
-                            select
-                            label="Select"
-                            className={classes.textField}
-                            value={this.state.currency}
-                            onChange={this.handleChange('currency')}
-                            SelectProps={{
-                                MenuProps: {
-                                    className: classes.menu,
-                                },
-                            }}
-                            helperText="Please select your currency"
-                            margin="normal"
-                        >
-                            {shipmentTypes.map(option => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                    </div>
+                    <div style={{margin: 10}}/>
 
                     <Button color='primary' variant="contained" onClick={this.props.calculate} className={style.button}>
                         Calculate
                     </Button>
-
                     {this.props.price !== undefined &&
                     <div>
                         It will const you {this.props.price}
@@ -173,7 +69,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    calculate: () => calculateRequest(dispatch)
+    calculate: () => dispatch(calculateRequest())
 });
 
 Calculator = connect(mapStateToProps, mapDispatchToProps)(Calculator);

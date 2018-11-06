@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/es/TextField/TextField";
 import {getLoginInfo, handleEmail, handlePassword, login} from "../data/action-creators";
 import connect from "react-redux/es/connect/connect";
 import style from './about.css'
+import Form from "../calculator/Form";
 
 export const About = () => {
     return (
