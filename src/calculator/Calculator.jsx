@@ -6,6 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/es/Button/Button";
 import {calculateRequest} from "../data/action-creators";
 import connect from "react-redux/es/connect/connect";
+import Typography from "@material-ui/core/Typography/Typography";
+import style from './Calculator.css'
 
 const styles = theme => ({
     container: {
@@ -15,7 +17,7 @@ const styles = theme => ({
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: 100,
+        width: 150,
     },
     dense: {
         marginTop: 190,
@@ -56,7 +58,10 @@ class Calculator extends React.Component {
 
         return (
             <form className={classes.container} noValidate autoComplete="off">
-                <div>
+                <div className={style.calculator}>
+                    <Typography variant="h3">
+                        Price calculator
+                    </Typography>
                     <div>
                         <TextField
                             id="From"
@@ -75,7 +80,7 @@ class Calculator extends React.Component {
                         />
                     </div>
 
-                    <div align="center">
+                    <div>
                         <TextField
                             className={classes.textField}
                             id="weight"
@@ -147,9 +152,10 @@ class Calculator extends React.Component {
                         </TextField>
                     </div>
 
-                    <Button color='primary' onClick={this.props.calculate}>
+                    <Button color='primary' variant="contained" onClick={this.props.calculate} className={style.button}>
                         Calculate
                     </Button>
+
                     {this.props.price !== undefined &&
                     <div>
                         It will const you {this.props.price}
