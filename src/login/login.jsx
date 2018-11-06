@@ -24,6 +24,7 @@ const loginResponse = (props) => {
 };
 
 const dialog = (props) => {
+    console.log('rednedr');
     return (
         <React.Fragment>
             <Dialog
