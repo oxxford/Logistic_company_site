@@ -9,7 +9,18 @@
 }
 
 .menu {
-    margin-left: 5px;
+    float: left;
     margin-top: 35px;
+    /*width: 30%;*/
+    vertical-align: top;
+}
+
+.space {
+    margin-left: 400px;
+    width: 500px;
+}
+
+.menu_items {
     width: 300px;
+    margin-left: 10px;
 }
