@@ -7,6 +7,8 @@ import Button from "@material-ui/core/es/Button/Button";
 import {calculateRequest} from "../data/action-creators";
 import connect from "react-redux/es/connect/connect";
 import Form from "./Form";
+import Redirect from "react-router-dom/es/Redirect";
+import DialogContentText from "@material-ui/core/es/DialogContentText/DialogContentText";
 
 const styles = theme => ({
     container: {
@@ -27,14 +29,18 @@ const styles = theme => ({
 });
 
 class Calculator extends React.Component {
-    state = {
-        currency: '1'
-    };
-
-    handleChange = name => event => {
-        this.setState({
-            [name]: event.target.value,
-        });
+    calculateResponse = () => {
+        return (
+            this.props.price ? (
+                <div>
+                    It will const you {this.props.price}
+                </div>
+            ) : (
+                <div>
+                    Unsuccessful
+                </div>
+            )
+        )
     };
 
     render() {
@@ -51,9 +57,7 @@ class Calculator extends React.Component {
                         Calculate
                     </Button>
                     {this.props.price !== undefined &&
-                    <div>
-                        It will const you {this.props.price}
-                    </div>
+                        this.calculateResponse()
                     }
                 </div>
 

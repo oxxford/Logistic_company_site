@@ -13,9 +13,7 @@ import Form from "../calculator/Form";
 export const About = () => {
     return (
         <React.Fragment>
-            <div className={style.about}>
-                About
-            </div>
+
         </React.Fragment>
     );
 };

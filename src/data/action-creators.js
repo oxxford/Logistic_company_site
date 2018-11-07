@@ -105,7 +105,10 @@ export const calculateRequest = () => (dispatch, getState) => {
             })
         })
         .catch((error) => {
-            console.log(error);
+            dispatch({
+                type: TYPES.PRICE_CALCULATION_REQUEST,
+                price: 0
+            })
         });
 };
 

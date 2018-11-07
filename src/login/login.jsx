@@ -82,10 +82,10 @@ const dialog = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    loginIsOpen: state.loginIsOpen,
-    emailValue: state.emailValue,
-    passwordValue: state.passwordValue,
-    authorized: state.authorized
+    loginIsOpen: state.app.loginIsOpen,
+    emailValue: state.app.emailValue,
+    passwordValue: state.app.passwordValue,
+    authorized: state.app.authorized
 });
 
 const mapDispatchToProps = (dispatch) => ({
