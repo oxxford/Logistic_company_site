@@ -35,7 +35,7 @@ const InsuranceSelect = ({input: {value, onChange}, ...custom}) => (
     </Select>
 );
 
-const Search = () => (
+const CalculateForm = () => (
     <form>
         <Field component={AdaptedTextField} name="from" label="From" margin="normal"/>
         <Field component={AdaptedTextField} name="to" label="To" margin="normal"/>
@@ -53,4 +53,4 @@ const Search = () => (
     </form>
 );
 
-export default reduxForm({form: 'calculate'})(Search);
+export default reduxForm({form: 'calculate'})(CalculateForm);

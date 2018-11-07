@@ -36,6 +36,9 @@ export const reducer =(prevState = basedState, action) => {
 
         case TYPES.CONFIRM_PASSWORD_VALUE:
             return {...newState, confirmPasswordValue: action.value };
+
+        case TYPES.PROFILE_REQUEST:
+            return {...newState, profile_updated: action.profile_updated };
     }
 
     return newState

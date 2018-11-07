@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
-import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/es/Button/Button";
 import {calculateRequest} from "../data/action-creators";
 import connect from "react-redux/es/connect/connect";
-import Form from "./Form";
 import style from './Calculator.css'
+import CalculateForm from './Form'
 import Typography from "@material-ui/core/Typography/Typography";
-import Redirect from "react-router-dom/es/Redirect";
-import DialogContentText from "@material-ui/core/es/DialogContentText/DialogContentText";
 
 const styles = theme => ({
     container: {
@@ -39,7 +35,7 @@ class Calculator extends React.Component {
                 </div>
             ) : (
                 <div>
-                    Unsuccessful
+                    unsuccessful
                 </div>
             )
         )
@@ -54,7 +50,7 @@ class Calculator extends React.Component {
                     <Typography variant="h3">
                         Price calculation
                     </Typography>
-                    <Form/>
+                    <CalculateForm/>
 
                     <div style={{margin: 10}}/>
 
@@ -72,7 +68,7 @@ class Calculator extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    price: state.price
+    price: state.app.price
 });
 
 const mapDispatchToProps = (dispatch) => ({

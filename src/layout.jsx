@@ -20,7 +20,7 @@ const layout = (props) => (
     <div>
         <AppBar position="static">
             <Toolbar variant="dense">
-                <Button color="inherit" className={style.button} component={Link} to='/'>
+                <Button color="inherit" component={Link} to='/'>
                     Group 2 inc.
                 </Button>
                 <span className={style.button}/>

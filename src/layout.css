@@ -1,13 +1,9 @@
-.app-bar-title {
-    flex-grow: 1;
-}
-
 .app-bar-button-spacer {
     margin: 0 8px;
 }
 
 .button {
-    margin: 0 325px;
+    flex-grow: 1;
 }
 
 .background {

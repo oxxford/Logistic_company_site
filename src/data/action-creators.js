@@ -112,6 +112,34 @@ export const calculateRequest = () => (dispatch, getState) => {
         });
 };
 
+export const profileRequest = () => (dispatch, getState) => {
+    const json = JSON.stringify(getState().form.profile.values);
+    console.log(json);
+
+    fetch('http://10.91.51.7:5000/api/v1/price', {
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+        },
+        body: json,
+        method: 'POST'
+    })
+        .then(response => response.json())
+        .then(data => {
+            dispatch({
+                type: TYPES.PROFILE_REQUEST,
+                profile_updated: true
+            })
+        })
+        .catch((error) => {
+            dispatch({
+                type: TYPES.PROFILE_REQUEST,
+                profile_updated: false
+            })
+        });
+};
+
 export const handleEmail = (value) => {
     return {
         type: TYPES.EMAIL_VALUE,

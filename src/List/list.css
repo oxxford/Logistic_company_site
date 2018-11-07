@@ -1,0 +1,12 @@
+.menu {
+    float: left;
+    margin-top: 35px;
+    /*width: 30%;*/
+    vertical-align: top;
+}
+
+
+.menu_items {
+    width: 300px;
+    margin-left: 10px;
+}
