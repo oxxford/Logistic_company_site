@@ -10,79 +10,80 @@ import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import ListItemText from '@material-ui/core/ListItemText';
+import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 
 
 const profile = () => {
     return (
         <React.Fragment>
-            <Paper className={style.menu}>
-                <MenuList>
-                    <MenuItem>
-                        <ListItemText inset primary="Create new order" />
-                    </MenuItem>
-                    <MenuItem >
-                        <ListItemText inset primary="My orders" />
-                    </MenuItem>
-                    <MenuItem >
-                        <ListItemText inset primary="Profile" />
-                    </MenuItem>
-                </MenuList>
-            </Paper>
-            <Grid container spacing={24}>
-                <Grid item xs={12} sm={12} md={8}>
-                    <Card style={{ backgroundColor: '#dfdeff' }}>
-                        <CardHeader
-                            title="User Profile"
+            <div className={style.menu_items}>
+                <Paper className={style.menu}>
+                    <MenuList>
+                        <MenuItem>
+                           Create new order
+                        </MenuItem>
+                        <MenuItem >
+                            My orders
+                        </MenuItem>
+                        <MenuItem >
+                            Profile
+                        </MenuItem>
+                    </MenuList>
+                </Paper>
+            </div>
+            <div className={style.space}>
+                <Card style={{ backgroundColor: '#dfdeff' }} className={style.menu}>
+                    <CardHeader
+                        title="User Profile"
+                    />
+                    <CardContent>
+                        <TextField
+                            margin="dense"
+                            id="login"
+                            label="Login"
+                            type="text"
+                            fullWidth
                         />
-                        <CardContent>
-                            <TextField
-                                margin="dense"
-                                id="login"
-                                label="Login"
-                                type="text"
-                                fullWidth
-                            />
 
-                            <TextField
-                                margin="dense"
-                                id="name"
-                                label="Name"
-                                type="text"
-                                fullWidth
-                            />
-                            <TextField
-                                margin="dense"
-                                id="surname"
-                                label="Surname"
-                                type="text"
-                                fullWidth
-                            />
-                            <TextField
-                                margin="dense"
-                                id="email"
-                                label="Email"
-                                type="email"
-                                fullWidth
-                            />
-                            <TextField
-                                margin="dense"
-                                id="address"
-                                label="Address"
-                                type="text"
-                                fullWidth
-                            />
-                            <TextField
-                                margin="dense"
-                                id="postalcode"
-                                label="Postal code"
-                                type="text"
-                                fullWidth
-                            />
+                        <TextField
+                            margin="dense"
+                            id="name"
+                            label="Name"
+                            type="text"
+                            fullWidth
+                        />
+                        <TextField
+                            margin="dense"
+                            id="surname"
+                            label="Surname"
+                            type="text"
+                            fullWidth
+                        />
+                        <TextField
+                            margin="dense"
+                            id="email"
+                            label="Email"
+                            type="email"
+                            fullWidth
+                        />
+                        <TextField
+                            margin="dense"
+                            id="address"
+                            label="Address"
+                            type="text"
+                            fullWidth
+                        />
+                        <TextField
+                            margin="dense"
+                            id="postalcode"
+                            label="Postal code"
+                            type="text"
+                            fullWidth
+                        />
 
-                        </CardContent>
-                    </Card>
-                </Grid>
-            </Grid>
+                    </CardContent>
+                </Card>
+            </div>
         </React.Fragment>
     );
 };
