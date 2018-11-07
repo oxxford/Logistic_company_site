@@ -20,9 +20,10 @@ const layout = (props) => (
     <div>
         <AppBar position="static">
             <Toolbar variant="dense">
-                <Typography variant="title" color="inherit" className={style.appBarTitle}>
+                <Button color="inherit" className={style.button} component={Link} to='/'>
                     Group 2 inc.
-                </Typography>
+                </Button>
+                <span className={style.button}/>
                 <Button variant="contained" color="default" component={Link} to='/about'>
                     About
                 </Button>

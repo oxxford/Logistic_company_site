@@ -6,6 +6,10 @@
     margin: 0 8px;
 }
 
+.button {
+    margin: 0 325px;
+}
+
 .background {
     position: relative;
     background-size: contain;

@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button/Button";
 import style from './layout.css'
 import {login} from "./data/action-creators";
 import connect from "react-redux/es/connect/connect";
+import {Link} from "react-router-dom";
 
 const background = (props) => {
     return (
@@ -28,7 +29,7 @@ const background = (props) => {
                 <Typography color='default' variant="display3">
                     We can help you!
                 </Typography>
-                <Button variant="contained" color="secondary">
+                <Button variant="contained" color="secondary" component={Link} to='/calculate'>
                     Calculate delivery price
                 </Button>
             </div>

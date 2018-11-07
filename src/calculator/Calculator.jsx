@@ -7,6 +7,8 @@ import Button from "@material-ui/core/es/Button/Button";
 import {calculateRequest} from "../data/action-creators";
 import connect from "react-redux/es/connect/connect";
 import Form from "./Form";
+import style from './Calculator.css'
+import Typography from "@material-ui/core/Typography/Typography";
 import Redirect from "react-router-dom/es/Redirect";
 import DialogContentText from "@material-ui/core/es/DialogContentText/DialogContentText";
 
@@ -18,7 +20,7 @@ const styles = theme => ({
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: 100,
+        width: 90,
     },
     dense: {
         marginTop: 190,
@@ -48,12 +50,15 @@ class Calculator extends React.Component {
 
         return (
             <form className={classes.container} noValidate autoComplete="off">
-                <div>
+                <div className={style.calculator}>
+                    <Typography variant="h3">
+                        Price calculation
+                    </Typography>
                     <Form/>
 
                     <div style={{margin: 10}}/>
 
-                    <Button color='primary' onClick={this.props.calculate}>
+                    <Button color='primary' variant="contained" onClick={this.props.calculate} className={style.button}>
                         Calculate
                     </Button>
                     {this.props.price !== undefined &&
