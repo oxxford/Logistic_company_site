@@ -8,7 +8,7 @@ const AdaptedTextField = ({input: {value, onChange}, ...custom}) => (
         value={value}
         onChange={onChange}
         {...custom}
-        style={{width: 500}}
+        style={{width: 400}}
     />
 );
 

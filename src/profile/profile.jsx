@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import connect from "react-redux/es/connect/connect";
-import List from "../List/List.jsx"
+import LeftList from "../List/LeftList.jsx"
 import ProfileForm from "./ProfileForm";
 import Button from "@material-ui/core/Button/Button";
 import {profileRequest} from "../data/action-creators";
@@ -34,7 +34,7 @@ const profileResponse = (props) => {
 const profile = (props) => {
     return (
         <React.Fragment>
-            <List/>
+            <LeftList/>
             <div className={style.space}>
                 <Card style={{ backgroundColor: '#dfdeff' }} className={style.menu}>
                     <CardHeader

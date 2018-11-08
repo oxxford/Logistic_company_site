@@ -1,18 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
 .orders {
     font-size: 2.5em;
     /*margin-top: 35px;*/
     position: absolute;
-    margin: auto;
-    top: 70px;
-    right: 0;
-    bottom: 0;
-    left: 350px;
     border-radius: 3px;
+    margin: 35px 400px auto;
 }
 
 .card {
     margin-top: 15px;
     margin-bottom: 15px;
+    width: 500px;
 }
 
 .button {

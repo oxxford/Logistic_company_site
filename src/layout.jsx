@@ -15,6 +15,7 @@ import {Background} from "./background";
 import Calculator from "./calculator/Calculator";
 import profile from "./profile/profile";
 import Orders from "./orders/Orders"
+import NewOrder from "./NewOrder/NewOrder";
 
 const layout = (props) => (
     <div>
@@ -50,6 +51,7 @@ const layout = (props) => (
         <Route exact path="/calculate" component={Calculator} />
         <Route exact path="/profile" component={profile} />
         <Route exact path="/orders" component={Orders} />
+        <Route exact path="/neworder" component={NewOrder} />
     </div>
 );
 

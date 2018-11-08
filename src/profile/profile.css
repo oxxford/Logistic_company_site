@@ -4,7 +4,6 @@
 
 .space {
     margin-left: 400px;
-    width: 500px;
     margin-bottom: 20px;
 }
 
@@ -13,6 +12,7 @@
     margin-top: 35px;
     /*width: 30%;*/
     vertical-align: top;
+    width: 500px;
 }
 
 .button {

@@ -3,6 +3,8 @@ import { Field, reduxForm } from 'redux-form'
 import TextField from "@material-ui/core/TextField/TextField";
 import Select from "@material-ui/core/Select/Select";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
+import FormControl from "@material-ui/core/FormControl/FormControl";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 
 const AdaptedTextField = ({input: {value, onChange}, ...custom}) => (
     <TextField
@@ -13,26 +15,32 @@ const AdaptedTextField = ({input: {value, onChange}, ...custom}) => (
 );
 
 const DeliverySelect = ({input: {value, onChange}, ...custom}) => (
-    <Select
-        value={value}
-        onChange={onChange}
-        {...custom}
-    >
-        <MenuItem value={1}>OneDay</MenuItem>
-        <MenuItem value={2}>TwoDays</MenuItem>
-        <MenuItem value={5}>FiveDays</MenuItem>
-    </Select>
+    <FormControl style={{minWidth: 120}}>
+        <InputLabel>Delivery type</InputLabel>
+        <Select
+            value={value}
+            onChange={onChange}
+            {...custom}
+        >
+            <MenuItem value={1}>OneDay</MenuItem>
+            <MenuItem value={2}>TwoDays</MenuItem>
+            <MenuItem value={5}>FiveDays</MenuItem>
+        </Select>
+    </FormControl>
 );
 
 const InsuranceSelect = ({input: {value, onChange}, ...custom}) => (
-    <Select
-        value={value}
-        onChange={onChange}
-        {...custom}
-    >
-        <MenuItem value={true}>Yes</MenuItem>
-        <MenuItem value={false}>No</MenuItem>
-    </Select>
+    <FormControl style={{minWidth: 120}}>
+        <InputLabel>Insurance</InputLabel>
+        <Select
+            value={value}
+            onChange={onChange}
+            {...custom}
+        >
+            <MenuItem value={true}>Yes</MenuItem>
+            <MenuItem value={false}>No</MenuItem>
+        </Select>
+    </FormControl>
 );
 
 const CalculateForm = () => (

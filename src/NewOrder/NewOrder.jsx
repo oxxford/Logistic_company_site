@@ -1,56 +1,71 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import Button from "@material-ui/core/es/Button/Button";
-import {calculateRequest} from "../data/action-creators";
+import React from "react";
+import style from '../profile/profile.css'
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
 import connect from "react-redux/es/connect/connect";
-import CalculateForm from './Form'
+import LeftList from "../List/LeftList.jsx"
+import Button from "@material-ui/core/Button/Button";
+import {profileRequest} from "../data/action-creators";
 import Typography from "@material-ui/core/Typography/Typography";
+import CalculateForm from "../calculator/Form";
 
-class Calculator extends React.Component {
-    calculateResponse = () => {
-        return (
-            this.props.price ? (
-                <div>
-                    It will const you {this.props.price}
-                </div>
-            ) : (
-                <div>
-                    unsuccessful
-                </div>
-            )
+const profileResponse = (props) => {
+    return (
+        props.profile_updated ? (
+            <div className={style.button}>
+                <Typography style={{ color: '#1cff11' }} variant="subheading">
+                    Information updated
+                </Typography>
+                <div className={style.div}/>
+            </div>
+        ) : (
+            <div className={style.button}>
+                <Typography style={{ color: '#ff0817' }} variant="subheading">
+                    Unsuccessful
+                </Typography>
+                <div className={style.div}/>
+            </div>
         )
-    };
+    )
+};
 
-    render() {
-        const {classes} = this.props;
 
-        return (
-            <form className={classes.container} noValidate autoComplete="off">
-                <div className={style.calculator}>
-                    <CalculateForm/>
+const order = (props) => {
+    return (
+        <React.Fragment>
+            <LeftList/>
+            <div className={style.space}>
+                <Card style={{ backgroundColor: '#dfdeff' }} className={style.menu}>
+                    <CardHeader
+                        title="Create a new order"
+                    />
+                    <CardContent>
+                        <CalculateForm/>
+                    </CardContent>
 
-                    <div style={{margin: 10}}/>
 
-                    <Button color='primary' variant="contained" onClick={this.props.calculate} className={style.button}>
-                        Calculate
-                    </Button>
-                    {this.props.price !== undefined &&
-                    this.calculateResponse()
+                    {props.profile_updated !== undefined &&
+                    profileResponse(props)
                     }
-                </div>
 
-            </form>
-        );
-    }
-}
+                    <span className={style.button}/>
+                    <Button variant="contained" color="primary" onClick={props.request}>
+                        Submit
+                    </Button>
+                    <div className={style.div}/>
+                </Card>
+            </div>
+        </React.Fragment>
+    );
+};
 
 const mapStateToProps = (state) => ({
-    price: state.app.price
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    calculate: () => dispatch(calculateRequest())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calculator);
+const NewOrder = connect(mapStateToProps, mapDispatchToProps)(order);
+
+export default NewOrder;
