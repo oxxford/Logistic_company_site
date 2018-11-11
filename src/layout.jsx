@@ -13,9 +13,10 @@ import connect from "react-redux/es/connect/connect";
 import {About} from "./about/about";
 import {Background} from "./background";
 import Calculator from "./calculator/Calculator";
-import profile from "./profile/profile";
+import profile from "./profile/Profile";
 import Orders from "./orders/Orders"
 import NewOrder from "./NewOrder/NewOrder";
+import Tracking from "./tracking/tracking"
 
 const layout = (props) => (
     <div>
@@ -33,7 +34,7 @@ const layout = (props) => (
                     Calculate price
                 </Button>
                 <span className={style.appBarButtonSpacer}/>
-                <Button variant="contained" color="default" onClick={() => props.login(true)}>
+                <Button variant="contained" color="default" component={Link} to='/tracking'>
                     Track a parcel
                 </Button>
                 <span className={style.appBarButtonSpacer}/>
@@ -52,6 +53,7 @@ const layout = (props) => (
         <Route exact path="/profile" component={profile} />
         <Route exact path="/orders" component={Orders} />
         <Route exact path="/neworder" component={NewOrder} />
+        <Route exact path="/tracking" component={Tracking} />
     </div>
 );
 

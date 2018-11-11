@@ -1,5 +1,5 @@
 import React from "react";
-import style from '../profile/profile.css'
+import style from '../profile/Profile.css'
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -36,10 +36,10 @@ const order = (props) => {
         <React.Fragment>
             <LeftList/>
             <div className={style.space}>
+                <Typography variant="display2" >
+                    Create a new order
+                </Typography>
                 <Card style={{ backgroundColor: '#dfdeff' }} className={style.menu}>
-                    <CardHeader
-                        title="Create a new order"
-                    />
                     <CardContent>
                         <CalculateForm/>
                     </CardContent>
