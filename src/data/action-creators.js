@@ -18,7 +18,7 @@ export const signup = (signupIsOpen) => {
 export const getLoginInfo = (dispatch, emailValue, passwordValue) => {
     const json = '{ "email": "' + emailValue + '", "password": "' + passwordValue + '" }';
 
-    fetch('http://54.158.146.112/api/v1/auth', {
+    fetch('http://10.91.51.78:5000/api/v1/auth', {
         headers: {
             'Authorization': 'Basic ' + base64.encode(emailValue + ":" + passwordValue),
             'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export const getSignupInfo = (dispatch, emailValue, passwordValue, confirmPasswo
     const json = '{ "email": "' + emailValue + '", "password": "' + passwordValue + '", ' +
         '"login": "login1", "name": "name", "surname": "surname", "birth_date": "01.01.2018"}';
 
-    fetch('http://54.158.146.112/api/v1/users', {
+    fetch('http://10.91.51.78:5000/api/v1/users', {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
@@ -88,7 +88,7 @@ export const calculateRequest = () => (dispatch, getState) => {
     const json = JSON.stringify(getState().form.calculate.values);
     console.log(json);
 
-    fetch('http://10.91.51.7:5000/api/v1/price', {
+    fetch('http://10.91.51.78:5000/api/v1/price', {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',

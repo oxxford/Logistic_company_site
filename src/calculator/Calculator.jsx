@@ -31,7 +31,7 @@ class Calculator extends React.Component {
         return (
             this.props.price ? (
                 <div>
-                    It will const you {this.props.price}
+                    It will cost you {this.props.price} bucks
                 </div>
             ) : (
                 <div>
