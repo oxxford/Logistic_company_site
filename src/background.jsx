@@ -41,7 +41,7 @@ const background = (props) => {
                 <Typography color='default' variant="display3">
                     We allow to easily see it!
                 </Typography>
-                <Button variant="contained" color="secondary" onClick={() => props.login(true)}>
+                <Button variant="contained" color="secondary" component={Link} to='/tracking'>
                     Track a parcel
                 </Button>
             </div>

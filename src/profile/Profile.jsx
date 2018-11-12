@@ -1,5 +1,5 @@
 import React from "react";
-import style from './profile.css'
+import style from './Profile.css'
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -36,10 +36,11 @@ const profile = (props) => {
         <React.Fragment>
             <LeftList/>
             <div className={style.space}>
+                <Typography variant="display2" >
+                    User profile
+                </Typography>
                 <Card style={{ backgroundColor: '#dfdeff' }} className={style.menu}>
-                    <CardHeader
-                        title="User Profile"
-                    />
+
                     <CardContent>
                         <ProfileForm/>
                     </CardContent>

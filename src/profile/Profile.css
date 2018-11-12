@@ -5,6 +5,7 @@
 .space {
     margin-left: 400px;
     margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 .menu {
@@ -26,4 +27,12 @@
 .text {
     margin-left: 23px;
     font-size: 1em;
+}
+
+.title {
+    font-size: 2.5em;
+    /*margin-top: 35px;*/
+    position: absolute;
+    border-radius: 3px;
+    margin: 35px 400px auto;
 }

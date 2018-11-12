@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './orders.css'
+import style from './Orders.css'
 import Grid from "@material-ui/core/Grid/Grid";
 import Card from "@material-ui/core/Card/Card";
 import CardContent from "@material-ui/core/CardContent/CardContent";
