@@ -1,7 +1,6 @@
 import React from "react";
 import style from './Profile.css'
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import connect from "react-redux/es/connect/connect";
 import LeftList from "../List/LeftList.jsx"
@@ -12,7 +11,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 
 const profileResponse = (props) => {
     return (
-        props.profile_updated ? (
+        props.updated ? (
             <div className={style.button}>
                 <Typography style={{ color: '#1cff11' }} variant="subheading">
                     Information updated
@@ -22,7 +21,7 @@ const profileResponse = (props) => {
         ) : (
             <div className={style.button}>
                 <Typography style={{ color: '#ff0817' }} variant="subheading">
-                    Unsuccessful
+                    {props.error}
                 </Typography>
                 <div className={style.div}/>
             </div>
@@ -46,7 +45,7 @@ const profile = (props) => {
                     </CardContent>
 
 
-                    {props.profile_updated !== undefined &&
+                    {props.updated !== undefined &&
                         profileResponse(props)
                     }
 
@@ -62,7 +61,8 @@ const profile = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    profile_updated: state.app.profile_updated
+    updated: state.app.profile_updated,
+    error: state.app.profile_error
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -35,7 +35,7 @@ class Calculator extends React.Component {
                 </div>
             ) : (
                 <div>
-                    unsuccessful
+                    {this.props.error}
                 </div>
             )
         )
@@ -68,7 +68,8 @@ class Calculator extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    price: state.app.price
+    price: state.app.price,
+    error: state.app.price_error
 });
 
 const mapDispatchToProps = (dispatch) => ({

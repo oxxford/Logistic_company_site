@@ -26,7 +26,7 @@ export const reducer =(prevState = basedState, action) => {
                 authorized: action.authorized };
 
         case TYPES.PRICE_CALCULATION_REQUEST:
-            return {...newState, price: action.price };
+            return {...newState, price: action.price, price_error: action.price_error };
 
         case TYPES.EMAIL_VALUE:
             return {...newState, emailValue: action.value };
@@ -38,7 +38,12 @@ export const reducer =(prevState = basedState, action) => {
             return {...newState, confirmPasswordValue: action.value };
 
         case TYPES.PROFILE_REQUEST:
-            return {...newState, profile_updated: action.profile_updated };
+            return {...newState, profile_updated: action.profile_updated,
+                userData: action.userData, profile_error: action.profile_error };
+
+        case TYPES.TRACKING_REQUEST:
+            return {...newState, track_successful: action.track_successful,
+                track_data: action.track_data, track_error: action.track_error };
     }
 
     return newState

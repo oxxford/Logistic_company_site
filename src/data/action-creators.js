@@ -48,6 +48,44 @@ export const getLoginInfo = (dispatch, emailValue, passwordValue) => {
         });
 };
 
+export const getParcelTracking = () => (dispatch, getState) => {
+    const json = JSON.stringify(getState().form.tracking.values);
+
+    fetch('http://10.91.51.78:5000/api/v1/track', {
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+        },
+        body: json,
+        method: 'POST'
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success)
+                dispatch({
+                    type: TYPES.TRACKING_REQUEST,
+                    track_data: data.track_data,
+                    track_successful: true
+                });
+            else
+                dispatch({
+                    type: TYPES.TRACKING_REQUEST,
+                    track_error: data.error,
+                    track_successful: false
+                })
+        })
+        .catch((error) => {
+            console.log(error);
+
+            dispatch({
+                type: TYPES.TRACKING_REQUEST,
+                track_successful: false,
+                track_error: "Network_error"
+            })
+        });
+};
+
 export const getSignupInfo = (dispatch, emailValue, passwordValue, confirmPasswordValue) => {
     if (passwordValue !== confirmPasswordValue)
         return;
@@ -99,15 +137,23 @@ export const calculateRequest = () => (dispatch, getState) => {
     })
         .then(response => response.json())
         .then(data => {
-            dispatch({
-                type: TYPES.PRICE_CALCULATION_REQUEST,
-                price: data.price
-            })
+            if (data.success)
+                dispatch({
+                    type: TYPES.PRICE_CALCULATION_REQUEST,
+                    price: data.price
+                });
+            else
+                dispatch({
+                    type: TYPES.PRICE_CALCULATION_REQUEST,
+                    price: 0,
+                    price_error: data.error
+                })
         })
         .catch((error) => {
             dispatch({
                 type: TYPES.PRICE_CALCULATION_REQUEST,
-                price: 0
+                price: 0,
+                price_error: "Network error"
             })
         });
 };
@@ -127,15 +173,24 @@ export const profileRequest = () => (dispatch, getState) => {
     })
         .then(response => response.json())
         .then(data => {
-            dispatch({
-                type: TYPES.PROFILE_REQUEST,
-                profile_updated: true
-            })
+            if (data.success)
+                dispatch({
+                    type: TYPES.PROFILE_REQUEST,
+                    profile_updated: true,
+                    userData: getState().form.profile.values
+                });
+            else
+                dispatch({
+                    type: TYPES.PROFILE_REQUEST,
+                    profile_updated: false,
+                    profile_error: data.error
+                })
         })
         .catch((error) => {
             dispatch({
                 type: TYPES.PROFILE_REQUEST,
-                profile_updated: false
+                profile_updated: false,
+                profile_error: "Network error"
             })
         });
 };

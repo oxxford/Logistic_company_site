@@ -12,7 +12,7 @@ import CalculateForm from "../calculator/Form";
 
 const profileResponse = (props) => {
     return (
-        props.profile_updated ? (
+        props.updated ? (
             <div className={style.button}>
                 <Typography style={{ color: '#1cff11' }} variant="subheading">
                     Information updated
@@ -45,7 +45,7 @@ const order = (props) => {
                     </CardContent>
 
 
-                    {props.profile_updated !== undefined &&
+                    {props.updated !== undefined &&
                     profileResponse(props)
                     }
 
