@@ -1,15 +1,30 @@
 import React from "react";
-import {withStyles} from "@material-ui/core";
-import TextField from "@material-ui/core/TextField/TextField";
 import Typography from "@material-ui/core/Typography/Typography";
 import style from './Tracking.css'
 import Button from "@material-ui/core/Button/Button";
+import connect from "react-redux/es/connect/connect";
+import TrackingForm from "./TrackingForm";
+import {profileRequest} from "../data/action-creators";
 
-const styles = theme => ({
-});
+const profileResponse = (props) => {
+    return (
+        props.profile_updated ? (
+            <div>
+                <Typography variant="subheading">
+                    Here is the information about your parcel:
+                </Typography>
+            </div>
+        ) : (
+            <div>
+                <Typography variant="subheading">
+                    Couldn't find your tracking number.
+                </Typography>
+            </div>
+        )
+    )
+};
 
-const Tracking = (props) => {
-    const {classes} = props;
+const tracking = (props) => {
 
     return (
         <React.Fragment>
@@ -19,16 +34,14 @@ const Tracking = (props) => {
                 </Typography>
             </div>
             <div className={style.field}>
-                <TextField
-                    id="tracking"
-                    label="Tracking Number"
-                    margin="normal"
-                    variant="outlined"
-                    fullWidth
-                />
+                <TrackingForm/>
             </div>
+            {
+                props.profile_updated !== undefined &&
+                profileResponse(props)
+            }
             <div className={style.button}>
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={props.request}>
                     find!
                 </Button>
             </div>
@@ -37,4 +50,10 @@ const Tracking = (props) => {
 
 };
 
-export default withStyles(styles)(Tracking);
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+const Tracking = connect(mapStateToProps, mapDispatchToProps)(tracking);
+
+export default Tracking;
