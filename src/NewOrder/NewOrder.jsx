@@ -8,9 +8,9 @@ import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
 import CalculateForm from "../calculator/Form";
 import {InfoForm} from "./InfoForm";
-import {getParcelTracking, newOrderRequest} from "../data/action-creators";
+import {calculateRequest, newOrderRequest} from "../data/action-creators";
 
-const profileResponse = (props) => {
+const createResponse = (props) => {
     return (
         props.success ? (
             <div className={style.button}>
@@ -25,6 +25,20 @@ const profileResponse = (props) => {
                     {props.error}
                 </Typography>
                 <div className={style.div}/>
+            </div>
+        )
+    )
+};
+
+const calculateResponse = (props) => {
+    return (
+        props.price ? (
+            <div>
+                It will cost you {props.price} bucks
+            </div>
+        ) : (
+            <div>
+                {props.error}
             </div>
         )
     )
@@ -54,12 +68,20 @@ const order = (props) => {
 
 
                     {props.success !== undefined &&
-                    profileResponse(props)
+                    createResponse(props)
+                    }
+
+                    {props.price !== undefined &&
+                    calculateResponse(props)
                     }
 
                     <span className={style.button}/>
-                    <Button variant="contained" color="primary" onClick={props.request}>
+                    <Button variant="contained" color="primary" onClick={props.create_request}>
                         Submit
+                    </Button>
+                    <span style={{margin: 80}}/>
+                    <Button variant="contained" color="primary" onClick={props.calculate}>
+                        Calculate price
                     </Button>
                     <div className={style.div}/>
                 </Card>
@@ -71,11 +93,13 @@ const order = (props) => {
 const mapStateToProps = (state) => ({
     data: state.app.new_order_data,
     success: state.app.new_order_successful,
-    error: state.app.new_order_error
+    error: state.app.new_order_error,
+    price: state.app.price
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    request: () => dispatch(newOrderRequest())
+    create_request: () => dispatch(newOrderRequest()),
+    calculate: () => dispatch(calculateRequest())
 });
 
 const NewOrder = connect(mapStateToProps, mapDispatchToProps)(order);

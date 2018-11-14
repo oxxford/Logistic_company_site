@@ -17,10 +17,10 @@ const form = () => (
             <Field component={AdaptedTextField} name="email" label="Email" margin="dense"/>
         </div>
         <div>
-            <Field component={AdaptedTextField} name="password" label="Password" margin="dense"/>
+            <Field component={AdaptedTextField} name="password" label="Password" margin="dense" type="password"/>
         </div>
         <div>
-            <Field component={AdaptedTextField} name="confirmPassword" label="Confirm Password" margin="dense"/>
+            <Field component={AdaptedTextField} name="confirmPassword" label="Confirm Password" margin="dense" type="password"/>
         </div>
         <div>
             <Field component={AdaptedTextField} name="login" label="Login" margin="dense"/>

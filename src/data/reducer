@@ -48,7 +48,7 @@ export const reducer =(prevState = basedState, action) => {
 
         case TYPES.NEW_ORDER_REQUEST:
             return {...newState, new_order_successful: action.new_order_successful,
-                new_order_data: action.new_order_data, new_order_error: action.new_order_error };
+                new_order_data: action.new_order_data, new_order_error: action.new_order_error, price: undefined };
 
         case TYPES.ORDERS_REQUEST:
             return {...newState, orders_successful: action.orders_successful,
