@@ -5,8 +5,9 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import React from "react";
 import connect from "react-redux/es/connect/connect";
 import Link from "react-router-dom/es/Link";
+import {ordersRequest} from "../data/action-creators";
 
-const list = () => {
+const list = (props) => {
     return (
         <div className={style.menu_items}>
             <Paper className={style.menu}>
@@ -17,7 +18,7 @@ const list = () => {
                     <MenuItem component={Link} to="/orders">
                         My orders
                     </MenuItem>
-                    <MenuItem component={Link} to="/profile">
+                    <MenuItem  onClick={props.request} component={Link} to="/profile">
                         Profile
                     </MenuItem>
                 </MenuList>
@@ -30,6 +31,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    request: () => dispatch(ordersRequest())
 });
 
 const LeftList = connect(mapStateToProps, mapDispatchToProps)(list);

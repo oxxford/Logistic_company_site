@@ -32,6 +32,9 @@ const form = () => (
         <div>
             <Field component={AdaptedTextField} name="postcode" label="Postcode" margin="dense"/>
         </div>
+        <div>
+            <Field component={AdaptedTextField} name="phone" label="Phone number" margin="dense" type="tel"/>
+        </div>
 
     </form>
 );

@@ -1,28 +1,28 @@
 import React from "react";
 import style from '../profile/Profile.css'
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import connect from "react-redux/es/connect/connect";
 import LeftList from "../List/LeftList.jsx"
 import Button from "@material-ui/core/Button/Button";
-import {profileRequest} from "../data/action-creators";
 import Typography from "@material-ui/core/Typography/Typography";
 import CalculateForm from "../calculator/Form";
+import {InfoForm} from "./InfoForm";
+import {getParcelTracking, newOrderRequest} from "../data/action-creators";
 
 const profileResponse = (props) => {
     return (
-        props.updated ? (
+        props.success ? (
             <div className={style.button}>
                 <Typography style={{ color: '#1cff11' }} variant="subheading">
-                    Information updated
+                    {props.data}
                 </Typography>
                 <div className={style.div}/>
             </div>
         ) : (
             <div className={style.button}>
                 <Typography style={{ color: '#ff0817' }} variant="subheading">
-                    Unsuccessful
+                    {props.error}
                 </Typography>
                 <div className={style.div}/>
             </div>
@@ -41,11 +41,19 @@ const order = (props) => {
                 </Typography>
                 <Card style={{ backgroundColor: '#dfdeff' }} className={style.menu}>
                     <CardContent>
+                        <Typography variant="display1">
+                            Parcel info
+                        </Typography>
                         <CalculateForm/>
+                        <div style={{margin: 30}}/>
+                        <Typography variant="display1">
+                            Receiver info
+                        </Typography>
+                        <InfoForm/>
                     </CardContent>
 
 
-                    {props.updated !== undefined &&
+                    {props.success !== undefined &&
                     profileResponse(props)
                     }
 
@@ -61,9 +69,13 @@ const order = (props) => {
 };
 
 const mapStateToProps = (state) => ({
+    data: state.app.new_order_data,
+    success: state.app.new_order_successful,
+    error: state.app.new_order_error
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    request: () => dispatch(newOrderRequest())
 });
 
 const NewOrder = connect(mapStateToProps, mapDispatchToProps)(order);

@@ -8,8 +8,8 @@ import Typography from "@material-ui/core/Typography/Typography";
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Button from "@material-ui/core/es/Button/Button";
 import LeftList from "../List/LeftList";
+import connect from "react-redux/es/connect/connect";
 
 const styles = theme => ({
     title: {
@@ -17,9 +17,7 @@ const styles = theme => ({
     }
 });
 
-const Orders = (props) => {
-    const {classes} = props;
-
+const orders = (props) => {
     return (
         <React.Fragment>
             <LeftList/>
@@ -29,91 +27,43 @@ const Orders = (props) => {
                 </Typography>
                 <Grid>
                     <Grid item md={8}>
-                        <Card style={{backgroundColor: '#dfdeff'}} className={style.card}>
-                            <CardContent>
-                                <List>
-                                    <ListItem>
-                                        <Typography variant="headline">
-                                            Order #1
-                                        </Typography>
-                                    </ListItem>
-                                    <Divider/>
-                                    <ListItem>
-                                        <Typography variant="subheading">
-                                            Status: in progress <br/>
-                                            From: Kazan <br/>
-                                            To: Moscow
-                                        </Typography>
-                                    </ListItem>
-                                    <ListItem>
-                                        <Button variant="contained" color={"primary"} className={style.button}>
-                                            Tracking
-                                        </Button>
-                                    </ListItem>
-                                </List>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-                <Grid>
-                    <Grid item md={8}>
-                        <Card style={{backgroundColor: '#dfdeff'}} className={style.card}>
-                            <CardContent>
-                                <List>
-                                    <ListItem>
-                                        <Typography variant="headline">
-                                            Order #2
-                                        </Typography>
-                                    </ListItem>
-                                    <Divider/>
-                                    <ListItem>
-                                        <Typography variant="subheading">
-                                            Status: finished <br/>
-                                            From: Innopolis <br/>
-                                            To: Kazan
-                                        </Typography>
-                                    </ListItem>
-                                    <ListItem>
-                                        <Button variant="contained" color={"primary"} className={style.button}>
-                                            Tracking
-                                        </Button>
-                                    </ListItem>
-                                </List>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-                <Grid>
-                    <Grid item md={8}>
-                        <Card style={{backgroundColor: '#dfdeff'}} className={style.card}>
-                            <CardContent>
-                                <List>
-                                    <ListItem>
-                                        <Typography variant="headline">
-                                            Order #3
-                                        </Typography>
-                                    </ListItem>
-                                    <Divider/>
-                                    <ListItem>
-                                        <Typography variant="subheading">
-                                            Status: in progress <br/>
-                                            From: New York <br/>
-                                            To: Moscow
-                                        </Typography>
-                                    </ListItem>
-                                    <ListItem>
-                                        <Button variant="contained" color={"primary"} className={style.button}>
-                                            Tracking
-                                        </Button>
-                                    </ListItem>
-                                </List>
-                            </CardContent>
-                        </Card>
+                        {data.map((order) => (
+                            <Card style={{backgroundColor: '#dfdeff'}} className={style.card}>
+                                <CardContent>
+                                    <List>
+                                        <ListItem>
+                                            <Typography variant="headline">
+                                                Order with id {order.order.id}
+                                            </Typography>
+                                        </ListItem>
+                                        <Divider/>
+                                        <ListItem>
+                                            <Typography variant="subheading">
+                                                Status: {order.status} <br/>
+                                                From: Kazan <br/>
+                                                To: Moscow <br/>
+                                            </Typography>
+                                        </ListItem>
+                                    </List>
+                                </CardContent>
+                            </Card>
+                        ))}
                     </Grid>
                 </Grid>
             </div>
         </React.Fragment>
     );
 };
+
+const mapStateToProps = (state) => ({
+    success: state.app.orders_successful,
+    error: state.app.orders_error,
+    data: state.app.orders_data
+});
+
+const mapDispatchToProps = (dispatch) => ({
+});
+
+const Orders = connect(mapStateToProps, mapDispatchToProps)(orders);
 
 export default withStyles(styles)(Orders);
