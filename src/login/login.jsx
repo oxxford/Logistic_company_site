@@ -24,7 +24,6 @@ const loginResponse = (props) => {
 };
 
 const dialog = (props) => {
-    console.log('rednedr');
     return (
         <React.Fragment>
             <Dialog
@@ -65,14 +64,14 @@ const dialog = (props) => {
 
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={() => props.signup(true)} variant="contained" color="primary" className={style.signUpButton}>
+                    <Button onClick={() => props.signup(true)} color="primary" className={style.signUpButton}>
                         Sing Up
                     </Button>
                     <span className={style.appBarButtonSpacer}/>
                     <Button onClick={() => props.login(false)} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={() => props.getLoginInfo(props.emailValue, props.passwordValue)} color="primary">
+                    <Button onClick={() => props.getLoginInfo(props.emailValue, props.passwordValue)} variant="contained" color="primary">
                         Login
                     </Button>
                 </DialogActions>

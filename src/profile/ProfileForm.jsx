@@ -12,28 +12,28 @@ const AdaptedTextField = ({input: {value, onChange}, ...custom}) => (
     />
 );
 
-const form = () => (
+const form = (props) => (
     <form>
         <div>
-            <Field component={AdaptedTextField} name="login" label="Login" margin="dense"/>
+            <Field component={AdaptedTextField} name="login" label="Login" margin="dense" defaultValue={props.userData.login}/>
         </div>
         <div>
-            <Field component={AdaptedTextField} name="name" label="Name" margin="dense"/>
+            <Field component={AdaptedTextField} name="name" label="Name" margin="dense" defaultValue={props.userData.name}/>
         </div>
         <div>
-            <Field component={AdaptedTextField} name="surname" label="Surname" margin="dense"/>
+            <Field component={AdaptedTextField} name="surname" label="Surname" margin="dense" defaultValue={props.userData.surname}/>
         </div>
         <div>
-            <Field component={AdaptedTextField} name="email" label="Email" margin="dense"/>
+            <Field component={AdaptedTextField} name="email" label="Email" margin="dense" defaultValue={props.userData.email}/>
         </div>
         <div>
-            <Field component={AdaptedTextField} name="address" label="Address" margin="dense"/>
+            <Field component={AdaptedTextField} name="address" label="Address" margin="dense" defaultValue={props.userData.address}/>
         </div>
         <div>
-            <Field component={AdaptedTextField} name="postcode" label="Postcode" margin="dense"/>
+            <Field component={AdaptedTextField} name="birth_date" label="Birth date" margin="dense" defaultValue={props.userData.birth_date}/>
         </div>
         <div>
-            <Field component={AdaptedTextField} name="phone" label="Phone number" margin="dense" type="tel"/>
+            <Field component={AdaptedTextField} name="phone" label="Phone number" margin="dense" type="tel"  defaultValue={props.userData.phone}/>
         </div>
 
     </form>
@@ -42,7 +42,7 @@ const form = () => (
 const ProfileForm = reduxForm({form: 'profile'})(form);
 
 const mapStateToProps = (state) => ({
-    userData: state.userData
+    userData: state.app.userData
 });
 
 const mapDispatchToProps = (dispatch) => ({

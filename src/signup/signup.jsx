@@ -7,6 +7,7 @@ import Dialog from "@material-ui/core/es/Dialog/Dialog";
 import TextField from "@material-ui/core/es/TextField/TextField";
 import {getSignupInfo, handleConfirmPassword, handleEmail, handlePassword, signup} from "../data/action-creators";
 import connect from "react-redux/es/connect/connect";
+import {SignupForm} from "./SignupForm";
 
 const dialog = (props) => {
     return (
@@ -18,50 +19,14 @@ const dialog = (props) => {
             >
                 <DialogTitle id="form-dialog-title" align="center">Sign up</DialogTitle>
                 <DialogContent>
-
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="email"
-                        label="Email Address"
-                        type="email"
-                        fullWidth
-                        required="true"
-                        value={props.emailValue}
-                        onChange={props.handleEmail}
-                    />
-
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="password"
-                        label="Password"
-                        type="password"
-                        fullWidth
-                        required="true"
-                        value={props.passwordValue}
-                        onChange={props.handlePassword}
-                    />
-
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="confirm password"
-                        label="Confirm the password"
-                        type="password"
-                        fullWidth
-                        required="true"
-                        value={props.confirmPasswordValue}
-                        onChange={props.handleConfirmPassword}
-                    />
-
+                <SignupForm/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => props.signup(false)} color="primary">
                         Cancel
                     </Button>
                     <Button onClick={() =>
-                        props.getSignupInfo(props.emailValue, props.passwordValue, props.confirmPasswordValue)} color="primary">
+                        props.getSignupInfo()} variant="contained" color="primary">
                         Sign up
                     </Button>
                 </DialogActions>
@@ -71,19 +36,12 @@ const dialog = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    signupIsOpen: state.app.signupIsOpen,
-    emailValue: state.app.emailValue,
-    passwordValue: state.app.passwordValue,
-    confirmPasswordValue: state.app.confirmPasswordValue
+    signupIsOpen: state.app.signupIsOpen
 });
 
 const mapDispatchToProps = (dispatch) => ({
     signup: (isOpen) => dispatch(signup(isOpen)),
-    getSignupInfo: (emailValue, passwordValue, confirmPasswordValue) =>
-        getSignupInfo(dispatch, emailValue, passwordValue, confirmPasswordValue),
-    handleEmail: (e) => dispatch(handleEmail(e.target.value)),
-    handlePassword: (e) => dispatch(handlePassword(e.target.value)),
-    handleConfirmPassword: (e) => dispatch(handleConfirmPassword(e.target.value))
+    getSignupInfo: () => dispatch(getSignupInfo())
 });
 
 const SignupDialog = connect(mapStateToProps, mapDispatchToProps)(dialog);

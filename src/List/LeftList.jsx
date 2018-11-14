@@ -18,7 +18,7 @@ const list = (props) => {
                     <MenuItem component={Link} to="/orders">
                         My orders
                     </MenuItem>
-                    <MenuItem  onClick={props.request} component={Link} to="/profile">
+                    <MenuItem component={Link} to="/profile">
                         Profile
                     </MenuItem>
                 </MenuList>
@@ -31,7 +31,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    request: () => dispatch(ordersRequest())
 });
 
 const LeftList = connect(mapStateToProps, mapDispatchToProps)(list);

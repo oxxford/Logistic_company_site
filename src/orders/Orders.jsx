@@ -10,6 +10,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import LeftList from "../List/LeftList";
 import connect from "react-redux/es/connect/connect";
+import {ordersRequest} from "../data/action-creators";
 
 const styles = theme => ({
     title: {
@@ -18,6 +19,7 @@ const styles = theme => ({
 });
 
 const orders = (props) => {
+    props.request();
     return (
         <React.Fragment>
             <LeftList/>
@@ -27,7 +29,7 @@ const orders = (props) => {
                 </Typography>
                 <Grid>
                     <Grid item md={8}>
-                        {data.map((order) => (
+                        {props.data.map((order) => (
                             <Card style={{backgroundColor: '#dfdeff'}} className={style.card}>
                                 <CardContent>
                                     <List>
@@ -39,9 +41,10 @@ const orders = (props) => {
                                         <Divider/>
                                         <ListItem>
                                             <Typography variant="subheading">
-                                                Status: {order.status} <br/>
+                                                Status: {order.order.status} <br/>
                                                 From: Kazan <br/>
                                                 To: Moscow <br/>
+                                                Current position: {order.order.cur_pos === -1 ? "In home" : order.order.cur_pos}
                                             </Typography>
                                         </ListItem>
                                     </List>
@@ -62,6 +65,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    request: () => dispatch(ordersRequest())
 });
 
 const Orders = connect(mapStateToProps, mapDispatchToProps)(orders);

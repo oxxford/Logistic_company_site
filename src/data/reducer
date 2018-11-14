@@ -5,7 +5,8 @@ const basedState = {
     signupIsOpen: false,
     emailValue: "",
     passwordValue: "",
-    confirmPasswordValue: ""
+    confirmPasswordValue: "",
+    orders_data: []
 };
 
 export const reducer =(prevState = basedState, action) => {

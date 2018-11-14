@@ -1,7 +1,7 @@
 import {TYPES} from "./action-types";
 var base64 = require('base-64');
 
-const ip = "";
+const ip = "10.241.1.132:5000";
 
 export const login = (loginIsOpen) => {
     return {
@@ -50,15 +50,19 @@ export const getLoginInfo = (dispatch, emailValue, passwordValue) => {
         });
 };
 
-export const getSignupInfo = (dispatch, emailValue, passwordValue, confirmPasswordValue) => {
-    if (passwordValue !== confirmPasswordValue)
+export const getSignupInfo = () => (dispatch, getState) => {
+    const values = getState().form.signup.values;
+
+    if (values.passwordValue !== values.confirmPasswordValue)
         return;
 
-    const json = '{ "email": "' + emailValue + '", "password": "' + passwordValue + '", ' +
-        '"login": "login1", "name": "name", "surname": "surname", "birth_date": "01.01.2018"}';
+    values['birth_date'] = 'Wed, 14 Nov 2018 00:00:00 GMT';
+
+    const json = JSON.stringify(values);
 
     fetch('http://' + ip + '/api/v1/users', {
         headers: {
+            'Authorization': 'Basic ' + base64.encode(getState().app.emailValue + ":" + getState().app.passwordValue),
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -126,8 +130,10 @@ export const profileRequest = () => (dispatch, getState) => {
     const json = JSON.stringify(getState().form.profile.values);
     console.log(json);
 
-    fetch('http://' + ip + '/api/v1/price', {
+    //TODO
+    fetch('http://' + ip + '/api/v1/user', {
         headers: {
+            'Authorization': 'Basic ' + base64.encode(getState().app.emailValue + ":" + getState().app.passwordValue),
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -203,8 +209,9 @@ export const newOrderRequest = () => (dispatch, getState) => {
     const json = JSON.stringify({...getState().form.receiver.values, ...getState().form.calculate.values});
     console.log(json);
 
-    fetch('http://' + ip + '/api/v1/newOrder', {
+    fetch('http://' + ip + '/api/v1/orders', {
         headers: {
+            'Authorization': 'Basic ' + base64.encode(getState().app.emailValue + ":" + getState().app.passwordValue),
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -239,8 +246,10 @@ export const newOrderRequest = () => (dispatch, getState) => {
 };
 
 export const ordersRequest = () => (dispatch, getState) => {
+    console.log("orders");
     fetch('http://' + ip + '/api/v1/orders', {
         headers: {
+            'Authorization': 'Basic ' + base64.encode(getState().app.emailValue + ":" + getState().app.passwordValue),
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
@@ -249,18 +258,11 @@ export const ordersRequest = () => (dispatch, getState) => {
     })
         .then(response => response.json())
         .then(data => {
-            if (data.success)
-                dispatch({
-                    type: TYPES.ORDERS_REQUEST,
-                    orders_data: data.data,
-                    orders_successful: true
-                });
-            else
-                dispatch({
-                    type: TYPES.ORDERS_REQUEST,
-                    orders_error: data.error,
-                    orders_successful: false
-                })
+            dispatch({
+                type: TYPES.ORDERS_REQUEST,
+                orders_data: data,
+                orders_successful: true
+            })
         })
         .catch((error) => {
             console.log(error);
