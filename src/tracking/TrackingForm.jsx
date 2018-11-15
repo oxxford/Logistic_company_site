@@ -14,7 +14,7 @@ const AdaptedTextField = ({input: {value, onChange}, ...custom}) => (
 
 const TrackingForm = () => (
     <form>
-        <Field component={AdaptedTextField} name="tracking" label="Tracking number" margin="normal"/>
+        <Field component={AdaptedTextField} name="id" label="Tracking number" margin="normal"/>
     </form>
 );
 

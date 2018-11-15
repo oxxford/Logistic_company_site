@@ -14,8 +14,8 @@ const createResponse = (props) => {
     return (
         props.success ? (
             <div className={style.button}>
-                <Typography style={{ color: '#1cff11' }} variant="subheading">
-                    {props.data}
+                <Typography variant="display1">
+                    Created! Id of your parcel is {props.data.order_id}
                 </Typography>
                 <div className={style.div}/>
             </div>
@@ -33,8 +33,11 @@ const createResponse = (props) => {
 const calculateResponse = (props) => {
     return (
         props.price ? (
-            <div>
-                It will cost you {props.price} bucks
+            <div className={style.button}>
+                <Typography variant="subheading">
+                    It will cost you {props.price}
+                </Typography>
+                <div className={style.div}/>
             </div>
         ) : (
             <div>

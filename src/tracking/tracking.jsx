@@ -10,8 +10,8 @@ const profileResponse = (props) => {
     return (
         props.success ? (
             <div className={style.button}>
-                <Typography style={{ color: '#1cff11' }} variant="subheading">
-                    Here is the information about your parcel: {props.data}
+                <Typography variant="display1">
+                    Current position: {props.data.order.cur_pos === -1 ? "At home" : props.data.order.cur_pos}
                 </Typography>
                 <div className={style.div}/>
             </div>

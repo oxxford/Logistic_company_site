@@ -1,7 +1,7 @@
 import {TYPES} from "./action-types";
 var base64 = require('base-64');
 
-const ip = "10.241.1.132:5000";
+const ip = "10.91.51.155:5000";
 
 export const login = (loginIsOpen) => {
     return {
@@ -34,7 +34,7 @@ export const getLoginInfo = (dispatch, emailValue, passwordValue) => {
         .then(data => {
             dispatch({
                 type: TYPES.LOGIN_REQUEST,
-                userData: data.userData,
+                userData: data,
                 authorized: true,
                 loginIsOpen: false
             })
@@ -74,7 +74,7 @@ export const getSignupInfo = () => (dispatch, getState) => {
         .then(data => {
             dispatch({
                 type: TYPES.SIGN_UP_REQUEST,
-                userData: data.userData,
+                userData: data,
                 authorized: true,
                 signupIsOpen: false
             })
@@ -105,16 +105,9 @@ export const calculateRequest = () => (dispatch, getState) => {
     })
         .then(response => response.json())
         .then(data => {
-            if (data.success)
                 dispatch({
                     type: TYPES.PRICE_CALCULATION_REQUEST,
                     price: data.price
-                });
-            else
-                dispatch({
-                    type: TYPES.PRICE_CALCULATION_REQUEST,
-                    price: 0,
-                    price_error: data.error
                 })
         })
         .catch((error) => {
@@ -143,17 +136,10 @@ export const profileRequest = () => (dispatch, getState) => {
     })
         .then(response => response.json())
         .then(data => {
-            if (data.success)
                 dispatch({
                     type: TYPES.PROFILE_REQUEST,
                     profile_updated: true,
                     userData: getState().form.profile.values
-                });
-            else
-                dispatch({
-                    type: TYPES.PROFILE_REQUEST,
-                    profile_updated: false,
-                    profile_error: data.error
                 })
         })
         .catch((error) => {
@@ -167,30 +153,21 @@ export const profileRequest = () => (dispatch, getState) => {
 
 
 export const getParcelTracking = () => (dispatch, getState) => {
-    const json = JSON.stringify(getState().form.tracking.values);
 
-    fetch('http://' + ip + '/api/v1/track', {
+    fetch('http://' + ip + '/api/v1/track/' + getState().form.tracking.values.id, {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin' : '*',
             'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
         },
-        body: json,
-        method: 'POST'
+        method: 'GET'
     })
         .then(response => response.json())
         .then(data => {
-            if (data.success)
                 dispatch({
                     type: TYPES.TRACKING_REQUEST,
-                    track_data: data.track_data,
+                    track_data: data[0],
                     track_successful: true
-                });
-            else
-                dispatch({
-                    type: TYPES.TRACKING_REQUEST,
-                    track_error: data.error,
-                    track_successful: false
                 })
         })
         .catch((error) => {
@@ -206,7 +183,8 @@ export const getParcelTracking = () => (dispatch, getState) => {
 
 
 export const newOrderRequest = () => (dispatch, getState) => {
-    const json = JSON.stringify({...getState().form.receiver.values, ...getState().form.calculate.values});
+    const json = JSON.stringify({...getState().form.receiver.values, ...getState().form.calculate.values,
+                                price: getState().app.price});
     console.log(json);
 
     fetch('http://' + ip + '/api/v1/orders', {
@@ -221,17 +199,10 @@ export const newOrderRequest = () => (dispatch, getState) => {
     })
         .then(response => response.json())
         .then(data => {
-            if (data.success)
                 dispatch({
                     type: TYPES.NEW_ORDER_REQUEST,
-                    new_order_data: data.track_data,
+                    new_order_data: data,
                     new_order_successful: true
-                });
-            else
-                dispatch({
-                    type: TYPES.NEW_ORDER_REQUEST,
-                    new_order_error: data.error,
-                    new_order_successful: false
                 })
         })
         .catch((error) => {

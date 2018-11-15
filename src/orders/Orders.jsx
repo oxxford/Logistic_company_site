@@ -20,71 +20,89 @@ const styles = theme => ({
     }
 });
 
-const generate = (props) => {
-    props.request();
-    return (
-        props.data.map((order) => (
-            <Card style={{backgroundColor: '#dfdeff'}} className={style.card}>
-                <CardContent>
-                    <List>
-                        <ListItem>
-                            <Typography variant="headline">
-                                Order with id {order.order.id}
-                            </Typography>
-                        </ListItem>
-                        <Divider/>
-                        <ListItem>
-                            <Typography variant="subheading">
-                                Status: {order.order.status} <br/>
-                                From: Kazan <br/>
-                                To: Moscow <br/>
-                                Current position: {order.order.cur_pos === -1 ? "In home" : order.order.cur_pos}
-                            </Typography>
-                        </ListItem>
-                    </List>
-                </CardContent>
-            </Card>
-        ))
-    )
-};
 
-const noorders = () => {
-    return (
-        <div style={{width: 500}}>
-            <div style={{margin: 50}}/>
-            <Typography variant="display1">
-                You have no orders yet
-            </Typography>
-            <Button variant="contained" color="primary" component={Link} to="/neworder">
-                Create one
-            </Button>
-        </div>
-    )
-};
 
-const orders = (props) => {
-    return (
-        <React.Fragment>
-            <LeftList/>
-            <div className={style.orders}>
-                <Typography variant="display2">
-                    My orders
+class orders extends React.Component {
+    generate = () => {
+        console.log('gen');
+        return (
+            this.props.data.map((order) => (
+                <Card style={{backgroundColor: '#dfdeff'}} className={style.card}>
+                    <CardContent>
+                        <List>
+                            <ListItem>
+                                <Typography variant="headline">
+                                    Order with id {order.order.id}
+                                </Typography>
+                            </ListItem>
+                            <Divider/>
+                            <ListItem>
+                                <Typography variant="subheading">
+                                    Status: {order.order.status} <br/>
+                                    From: Kazan <br/>
+                                    To: Moscow <br/>
+                                    Current position: {order.order.cur_pos === -1 ? "In home" : order.order.cur_pos}
+                                </Typography>
+                            </ListItem>
+                        </List>
+                    </CardContent>
+                </Card>
+            ))
+        )
+    };
+
+    noorders = () => {
+        console.log('empty');
+        return (
+            <div style={{width: 500}}>
+                <div style={{margin: 50}}/>
+                <Typography variant="display1">
+                    You have no orders yet
                 </Typography>
-                <Grid>
-                    <Grid item md={8}>
-                        {(props.data ?
-                            (
-                                noorders()
-                            ) : (
-                                generate(props)
-                            )
-                        )}
-                    </Grid>
-                </Grid>
+                <Button variant="contained" color="primary" component={Link} to="/neworder">
+                    Create one
+                </Button>
             </div>
-        </React.Fragment>
-    );
-};
+        )
+    };
+
+    checkEmpty = () => {
+        console.log('check');
+        return this.props.data.isEmpty ?
+            (
+                this.noorders()
+            )
+            :
+            (
+                this.generate()
+            )
+
+    };
+
+    render() {
+        return (
+
+            <React.Fragment>
+                <LeftList/>
+                <div className={style.orders}>
+                    <Typography variant="display2">
+                        My orders
+                    </Typography>
+                    <Grid>
+                        <Grid item md={8}>
+                            {this.props.data === undefined ?
+                                this.props.request()
+                                :
+                                this.checkEmpty()
+                            }
+                        </Grid>
+                    </Grid>
+                </div>
+            </React.Fragment>
+        )
+            ;
+    };
+}
 
 const mapStateToProps = (state) => ({
     success: state.app.orders_successful,
