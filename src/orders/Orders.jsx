@@ -41,7 +41,7 @@ class orders extends React.Component {
                                     Status: {order.order.status} <br/>
                                     From: Kazan <br/>
                                     To: Moscow <br/>
-                                    Current position: {order.order.cur_pos === -1 ? "In home" : order.order.cur_pos}
+                                    Current position: {order.order.cur_pos === -1 ? "At home" : order.order.cur_pos}
                                 </Typography>
                             </ListItem>
                         </List>

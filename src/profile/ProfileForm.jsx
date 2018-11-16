@@ -15,7 +15,7 @@ const AdaptedTextField = ({input: {value, onChange}, ...custom}) => (
 const form = (props) => (
     <form>
         <div>
-            <Field component={AdaptedTextField} name="login" label="Login" margin="dense" defaultValue={props.userData.login}/>
+            <Field component={AdaptedTextField} name="login" label="Login" margin="dense"/>
         </div>
         <div>
             <Field component={AdaptedTextField} name="name" label="Name" margin="dense" defaultValue={props.userData.name}/>
@@ -39,7 +39,7 @@ const form = (props) => (
     </form>
 );
 
-const ProfileForm = reduxForm({form: 'profile'})(form);
+const ProfileForm = reduxForm({form: 'profile', values: {'login': "vasya"}})(form);
 
 const mapStateToProps = (state) => ({
     userData: state.app.userData
